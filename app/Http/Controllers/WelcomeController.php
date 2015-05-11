@@ -1,5 +1,7 @@
 <?php namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Category;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -18,9 +20,13 @@ class WelcomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+
+    private $categories;
+
+    public function __construct(Category $category)
 	{
 		$this->middleware('guest');
+        $this->categories = $category;
 	}
 
 	/**
@@ -32,5 +38,20 @@ class WelcomeController extends Controller {
 	{
 		return view('welcome');
 	}
+
+    public function exemplo()
+    {
+        /*
+        $nome = "Jefferson";
+        $sobrenome = "Grassine";
+        //return view('exemplo')->with('nome', $nome);
+        //return view('exemplo', ['nome'=>$nome, 'sobrenome'=>$sobrenome ]);
+        return view('exemplo', compact('nome', 'sobrenome'));
+        */
+
+        $categories = $this->categories->all();
+
+        return view('exemplo', compact('categories'));
+    }
 
 }
