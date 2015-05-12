@@ -15,13 +15,37 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('exemplo', 'WelcomeController@exemplo');
 
-/*Admin/Categories*/
-Route::get('admin/categories', 'AdminCategoriesController@index');
-Route::get('admin/products', 'AdminProductsController@index');
-
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);
+
+/*Admin*/
+Route::group(['prefix' => 'admin'], function(){
+
+    Route::get('', function(){
+       return "Página Inicial do Admin";
+    });
+
+    /*admin/categories*/
+    Route::group(['prefix' => 'categories'], function(){
+        Route::get('', 'AdminCategoriesController@index');
+        Route::get('create', 'AdminCategoriesController@create');
+        Route::get('update', 'AdminCategoriesController@update');
+        Route::get('delete', 'AdminCategoriesController@delete');
+    });
+
+    /*admin/products*/
+    Route::group(['prefix'=> 'products'], function(){
+        Route::get('', 'AdminProductsController@index');
+        Route::get('create', 'AdminProductsController@create');
+        Route::get('update', 'AdminProductsController@update');
+        Route::get('delete', 'AdminProductsController@delete');
+    });
+
+});
+
+
+

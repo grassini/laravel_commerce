@@ -30,6 +30,21 @@ class AdminProductsController extends Controller {
         return view('categories.products', compact('products'));
     }
 
+    public function create()
+    {
+        return "Action para Criar um novo Produto";
+    }
+
+    public function update()
+    {
+        return "Action para Atualizar um Produto";
+    }
+
+    public function delete()
+    {
+        return "Action para Deletar um Produto";
+    }
+
 
 
 

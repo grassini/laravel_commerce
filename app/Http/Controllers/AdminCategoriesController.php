@@ -31,4 +31,20 @@ class AdminCategoriesController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    public function create()
+    {
+        return "Action para Criar uma nova Categoria";
+    }
+
+    public function update()
+    {
+        return "Action para Atualizar uma Categoria";
+    }
+
+    public function delete()
+    {
+        return "Action para Deletar uma Categoria";
+    }
+
+
 }
