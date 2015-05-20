@@ -22,6 +22,14 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
+
+/*Admin*/
+Route::group(['prefix' => 'admin'], function(){
+
+    Route::get('', function(){
+        return "Página Inicial do Admin";
+    });
+
 /*Categories*/
 Route::get('categories', ['as'=>'categories', 'uses'=>'CategoriesController@index']);
 Route::post('categories', ['as'=>'categories.store', 'uses'=> 'CategoriesController@store']);
@@ -39,16 +47,16 @@ Route::get('products/{id}/destroy', ['as'=>'products.destroy', 'uses'=> 'Product
 Route::get('products/{id}/edit', ['as'=>'products.edit', 'uses'=> 'ProductsController@edit']);
 Route::put('products/{id}/update', ['as'=>'products.update', 'uses'=> 'ProductsController@update']);
 
+});
 
-
-/*Admin*/
+/*Admin*
 Route::group(['prefix' => 'admin'], function(){
 
     Route::get('', function(){
        return "Página Inicial do Admin";
     });
 
-    /*admin/categories*/
+    /*admin/categories*
     Route::group(['prefix' => 'categories'], function(){
         Route::get('', 'AdminCategoriesController@index');
         Route::get('create', 'AdminCategoriesController@create');
@@ -56,7 +64,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('delete', 'AdminCategoriesController@delete');
     });
 
-    /*admin/products*/
+    /*admin/products
     Route::group(['prefix'=> 'products'], function(){
         Route::get('', 'AdminProductsController@index');
         Route::get('create', 'AdminProductsController@create');
@@ -65,6 +73,6 @@ Route::group(['prefix' => 'admin'], function(){
     });
 
 });
-
+*/
 
 
