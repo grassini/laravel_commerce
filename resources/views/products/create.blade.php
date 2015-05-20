@@ -16,6 +16,11 @@
         {!! Form::open(['route'=>'products.store']) !!}
 
         <div class="form-group">
+            {!! Form::label('category', 'Category: ') !!}
+            {!! Form::select('category_id', $categories, null, ['class'=>'form-control'] ) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('name', 'Name: ') !!}
             {!! Form::text('name', null, ['class'=>'form-control'] ) !!}
         </div>
@@ -31,21 +36,22 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('featured', 'Featured: ') !!}
-            {!! Form::checkbox('featured', null) !!}
+            {!! Form::label('Featured ?') !!}
+            {!! Form::radio('featured', 1, ['class' => 'form-control']) !!} Yes
+            {!! Form::radio('featured', 0, ['class' => 'form-control']) !!} No
         </div>
 
         <div class="form-group">
-            {!! Form::label('recommend', 'Recommend: ') !!}
-            {!! Form::checkbox('recommend', null) !!}
+            {!! Form::label('Recommend ?') !!}
+            {!! Form::radio('recommend', 1, ['class' => 'form-control']) !!} Yes
+            {!! Form::radio('recommend', 0, ['class' => 'form-control']) !!} No
         </div>
+
 
         <div class="form-group">
             {!! Form::submit('Add Product', ['class'=>'btn btn-primary '] ) !!}
         </div>
 
         {!! Form::close() !!}
-
-
     </div>
 @endsection
