@@ -96,7 +96,7 @@ class ProductsController extends Controller {
         /*Pegando o Arquivo*/
         $file = $request->file('image');
 
-        
+
         /*Pegando a Extensão*/
         $extension = $file->getClientOriginalExtension();
 
@@ -115,7 +115,7 @@ class ProductsController extends Controller {
     {
         $image = $productImage->find($id);
 
-        if(file_exists(public_path().'/uploads'.$image->id.'.'.$image->extension)){
+        if(file_exists(public_path().'/uploads/'.$image->id.'.'.$image->extension)){
             Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
         }
 

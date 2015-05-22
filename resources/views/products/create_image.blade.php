@@ -13,7 +13,7 @@
             </ul>
         @endif
 
-        {!! Form::open(['route'=>['products.images.store', $product->id], 'method'=>'post', 'enctype'=>"multipart/form-data"])
+        {!! Form::open(['route'=>['products.images.store', $product->id], 'method'=>'post', 'files' => true ])
         !!}
 
         <div class="form-group">
