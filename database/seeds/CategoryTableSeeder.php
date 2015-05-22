@@ -9,7 +9,9 @@ class CategoryTableSeeder  extends Seeder
 {
     public function run()
     {
+        //DB::statement("SET foreign_key_checks = 0");
         DB::table('categories')->truncate();
+
 
         $faker = Faker::create('pt_BR');
 

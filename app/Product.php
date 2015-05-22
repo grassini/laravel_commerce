@@ -14,6 +14,14 @@ class Product extends Model
         'recommend'
     ];
 
+    /*Um produto tem muitas imagens*/
+    public function images()
+    {
+        return $this->hasMany('CodeCommerce\ProductImage');
+    }
+
+
+    /*Uma Categoria tem muitos produtos*/
     public function category()
     {
         return $this->belongsTo('CodeCommerce\Category');

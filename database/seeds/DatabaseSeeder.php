@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+        /*Usando para dar o truncate no MY_SQl*/
+        #DB::statement("SET foreign_key_checks = 0");
+
 		$this->call('UserTableSeeder');
 		$this->call('CategoryTableSeeder');
 		$this->call('ProductsTableSeeder');
