@@ -1,7 +1,8 @@
 <?php
 
 /*Admin*/
-Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']], function(){
+Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']],  function(){
+
 
     /*Categories*/
     Route::group(['prefix'=>'categories'], function() {
@@ -40,7 +41,7 @@ Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']], function(){
 });
 
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'StoreController@index');
 
 Route::get('exemplo', 'WelcomeController@exemplo');
 

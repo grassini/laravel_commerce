@@ -4,6 +4,7 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -38,36 +39,90 @@ class ProductsController extends Controller {
 
     public function store(Requests\ProductsRequest $request)
     {
-        $input = $request->all();
 
-        $product = $this->productsModel->fill($input);
 
+        $inputTags = explode(",", $request->get('tags'));
+
+
+        $product = $this->productsModel->fill($request->all());
         $product->save();
 
+
+        $p = $product->find($product->id);
+        $idTags = $this->recordTags($inputTags);
+        $p->tags()->sync($idTags);
+
         return redirect()->route('products');
+
+
+//        $input = $request->all();
+//
+//        $product = $this->productsModel->fill($input);
+//        $product->save();
+//
+//        return redirect()->route('products');
     }
+
+
+    private function recordTags($inputTags)
+    {
+            $tag = new Tag();
+            $countTags = count($inputTags);
+            foreach ($inputTags as $key => $value) {
+                $tag->create(["name" => $value]);
+            }
+
+            return $idTags = $tag->orderBy('id', 'DESC')->take($countTags)->lists('id');
+    }
+
+
+
+    public function edit($id, Category $category)
+    {
+
+        $product = $this->productsModel->find($id);
+
+        $categories = $category->lists('name', 'id');
+
+        $tags = implode(",", $product->tags()->lists('name'));
+
+        return view('products.edit', compact('product', 'categories', 'tags'));
+
+
+//        $categories = $category->lists('name', 'id');
+//
+//        $product = $this->productsModel->find($id);
+//
+//        return view('products.edit', compact('product', 'categories'));
+    }
+
+
+
+    public function update(Requests\ProductsRequest $request, $id)
+    {
+
+        $inputTags = explode(",", $request->get('tags'));
+
+        $this->productsModel->find($id)->update($request->all());
+
+        $idTags = $this->recordTags($inputTags);
+
+        $this->productsModel->find($id)->tags()->sync($idTags);
+
+        return redirect()->route('products');
+
+
+//        $this->productsModel->find($id)->update($request->all());
+//
+//        return redirect()->route('products');
+    }
+
+
 
     public function destroy($id)
     {
 
         $this->productsModel->find($id)->delete();
-
-        return redirect()->route('products');
-    }
-
-    public function edit($id, Category $category)
-    {
-        $categories = $category->lists('name', 'id');
-
-        $product = $this->productsModel->find($id);
-
-        return view('products.edit', compact('product', 'categories'));
-    }
-
-
-    public function update(Requests\ProductsRequest $request, $id)
-    {
-        $this->productsModel->find($id)->update($request->all());
 
         return redirect()->route('products');
     }

@@ -14,17 +14,47 @@ class Product extends Model
         'recommend'
     ];
 
-    /*Um produto tem muitas imagens*/
+    /*Relacionamento - Um produto tem muitas imagens*/
     public function images()
     {
         return $this->hasMany('CodeCommerce\ProductImage');
     }
 
 
-    /*Uma Categoria tem muitos produtos*/
+    /*Relacionamento - Uma Categoria tem muitos produtos*/
     public function category()
     {
         return $this->belongsTo('CodeCommerce\Category');
     }
 
+
+    /*Relacionamento - Muitos produtos e Muitas tags*/
+    public function tags()
+    {
+        return $this->belongsToMany('CodeCommerce\Tag');
+    }
+
+
+//    public function getNameDescriptionAttribute()
+//    {
+//        return $this->name." - ".$this->description;
+//
+//    }
+
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name');
+
+        return implode(', ', $tags);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', '=', 1);
+    }
+
+    public function scopeRecommend($query)
+    {
+        return $query->where('recommend', '=', 1);
+    }
 }

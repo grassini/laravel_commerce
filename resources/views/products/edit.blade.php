@@ -36,6 +36,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('tags', 'Tags: (Use o padrão: nomeDaTag, nomeDaTag, nomeDaTag,...)') !!}
+            {!! Form::text('tags', null, ['class' => 'form-control input-lg']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('recommend', 'Recommend:') !!}
             {!! Form::radio('recommend', 1, ($product->recommend)?true:false, ['class' => 'field']) !!} Sim
             {!! Form::radio('recommend', 0, (!$product->recommend)?true:false, ['class' => 'field']) !!} Não

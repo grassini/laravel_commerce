@@ -16,8 +16,7 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Category</th>
-                <th>Featured</th>
-                <th>Recommend</th>
+                <!--<th>Tags</th>-->
                 <th>Action</th>
             </tr>
 
@@ -28,8 +27,7 @@
                     <td>{{ str_limit($product->description, $limit = 100, $end = '...') }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->featured }}</td>
-                    <td>{{ $product->recommend }}</td>
+                    <!--<td>{{ $product->tag }}</td>-->
                     <td>
                         <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Edit</a>  |
                         <a href="{{ route('products.images', ['id'=>$product->id]) }}">Images</a>  |
