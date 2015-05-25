@@ -3,6 +3,8 @@
 /*Admin*/
 Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']],  function(){
 
+    Route::get('', ['as'=>'admin', 'uses'=>'ProductsController@index']);
+
 
     /*Categories*/
     Route::group(['prefix'=>'categories'], function() {

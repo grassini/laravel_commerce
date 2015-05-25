@@ -14,10 +14,13 @@ class ProductTag extends Migration {
 	{
 		Schema::create('product_tag', function(Blueprint $table)
 		{
-			$table->integer('product_id');
+			$table->integer('product_id')->unsigned()->default('0');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('tag_id');
+            $table->integer('tag_id')->unsigned()->default('0');
             $table->foreign('tag_id')->references('id')->on('tags');
+
+//            $table->integer('category_id')->unsigned()->default('0');
+//            $table->foreign('category_id')->references('id')->on('categories');
 		});
 	}
 

@@ -103,11 +103,11 @@ class ProductsController extends Controller {
 
         $inputTags = explode(",", $request->get('tags'));
 
-        $this->productsModel->find($id)->update($request->all());
-
         $idTags = $this->recordTags($inputTags);
 
         $this->productsModel->find($id)->tags()->sync($idTags);
+
+        $this->productsModel->find($id)->update($request->all());
 
         return redirect()->route('products');
 

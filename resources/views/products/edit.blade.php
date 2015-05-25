@@ -36,8 +36,16 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('tags', 'Tags: (Use o padrão: nomeDaTag, nomeDaTag, nomeDaTag,...)') !!}
-            {!! Form::text('tags', null, ['class' => 'form-control input-lg']) !!}
+            {!! Form::label('tags', 'Tags já cadastradas para este produto:') !!}
+            @foreach($product->tags as $tag)
+                <div class="btn btn-sm btn-default">{{ $tag->name }}</div>
+            @endforeach
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('tags', 'Adicionar Tags: (Digite a palavra e pressione ENTER)') !!}
+            {!! Form::text('tags', $tags , ['class' => 'form-control input-lg', 'data-role'
+            => 'tagsinput']) !!}
         </div>
 
         <div class="form-group">
