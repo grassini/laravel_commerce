@@ -45,11 +45,13 @@ class ProductsController extends Controller {
 
 
         $product = $this->productsModel->fill($request->all());
+
         $product->save();
 
-
         $p = $product->find($product->id);
+
         $idTags = $this->recordTags($inputTags);
+
         $p->tags()->sync($idTags);
 
         return redirect()->route('products');
@@ -64,16 +66,21 @@ class ProductsController extends Controller {
     }
 
 
+
     private function recordTags($inputTags)
     {
-            $tag = new Tag();
-            $countTags = count($inputTags);
+        $tag = new Tag();
+
+
+        $countTags = count($inputTags);
             foreach ($inputTags as $key => $value) {
-                $tag->create(["name" => $value]);
+                $tag = Tag::firstOrCreate(['name' => $value]);
+                //$tag->create(["name" => $value]);
             }
 
             return $idTags = $tag->orderBy('id', 'DESC')->take($countTags)->lists('id');
     }
+
 
 
 

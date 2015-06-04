@@ -44,7 +44,7 @@
 
         <div class="form-group">
             {!! Form::label('tags', 'Adicionar Tags: (Digite a palavra e pressione ENTER)') !!}
-            {!! Form::text('tags', $tags , ['class' => 'form-control input-lg', 'data-role'
+            {!! Form::text('tags', $tags, ['class' => 'form-control input-lg', 'data-role'
             => 'tagsinput']) !!}
         </div>
 
