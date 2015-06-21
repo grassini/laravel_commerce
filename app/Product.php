@@ -57,4 +57,11 @@ class Product extends Model
     {
         return $query->where('recommend', '=', 1);
     }
+
+    public function scopeCategory($query) {
+
+        return $this->category()->findOrFail($query);
+    }
+
+
 }

@@ -1,5 +1,9 @@
 <?php
 
+/*index da loja*/
+Route::get('/', 'StoreController@index');
+
+
 /*Admin*/
 Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']],  function(){
 
@@ -43,7 +47,9 @@ Route::group(['prefix' => 'admin', 'where' => ['id'=> '[0-9]+']],  function(){
 });
 
 
-Route::get('/', 'StoreController@index');
+
+
+
 
 Route::get('exemplo', 'WelcomeController@exemplo');
 

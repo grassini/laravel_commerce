@@ -70,16 +70,14 @@ class ProductsController extends Controller {
     private function recordTags($inputTags)
     {
         $tag = new Tag();
-
-
         $countTags = count($inputTags);
-            foreach ($inputTags as $key => $value) {
-                $tag = Tag::firstOrCreate(['name' => $value]);
-                //$tag->create(["name" => $value]);
-            }
-
-            return $idTags = $tag->orderBy('id', 'DESC')->take($countTags)->lists('id');
+        foreach ($inputTags as $key => $value) {
+            $tag = Tag::firstOrCreate(['name' => $value]);
+            //$tag->create(["name" => $value]);
+        }
+        return $idTags = $tag->orderBy('id', 'DESC')->take($countTags)->lists('id');
     }
+
 
 
 
