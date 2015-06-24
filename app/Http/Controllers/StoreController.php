@@ -3,6 +3,7 @@
 use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
+use Illuminate\Support\Facades\DB;
 
 
 class StoreController extends Controller
@@ -18,6 +19,8 @@ class StoreController extends Controller
         $pRecomment = Product::recommend()->get();
 
         $categories = Category::all();
+
+
 
 
 
