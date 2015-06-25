@@ -35,17 +35,21 @@ class Product extends Model
     }
 
 
-//    public function getNameDescriptionAttribute()
-//    {
-//        return $this->name." - ".$this->description;
-//
-//    }
-
     public function getTagListAttribute()
     {
         $tags = $this->tags->lists('name');
 
         return implode(', ', $tags);
+
+       /*
+        $tags = [];
+        foreach ($this->tags as $tag) {
+            $tags[] = $tag->name;
+        }
+
+        return implode(', ', $tags);
+        */
+
     }
 
     public function scopeFeatured($query)
@@ -53,15 +57,26 @@ class Product extends Model
         return $query->where('featured', '=', 1);
     }
 
+
     public function scopeRecommend($query)
     {
         return $query->where('recommend', '=', 1);
     }
 
-    public function scopeCategory($query) {
 
-        return $this->category()->findOrFail($query);
+    public function scopeOfCategory($query, $type)
+    {
+        return $query->where('category_id', '=', $type);
     }
+
+
+    public function scopeOfTag($query, $type){
+        return $query->whereHas('tags', function($q) use ($type){
+            $q->where('id', '=', $type);
+        });
+    }
+
+
 
 
 }
