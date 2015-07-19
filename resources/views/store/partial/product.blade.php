@@ -17,7 +17,7 @@
 
                 <a hr{{ route('store.product', ['id' => $products->id]) }}f="#" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>
 
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
+                <a href="{{ route('cart.add', ['id'=>$products->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
             </div>
             <div class="product-overlay">
                 <div class="overlay-content">
@@ -25,7 +25,7 @@
                     <p>{{ $products->name }}</p>
                     <a href="{{ route('store.product', ['id' => $products->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>
 
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
+                    <a href="{{ route('cart.add', ['id'=>$products->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
                 </div>
             </div>
         </div>

@@ -51,21 +51,17 @@
 
                     <span>
                         <span>R$ {{ number_format($product->price,2,",",".") }} </span>
-                        <a href="#" class="btn btn-default cart">
+                        <a href="{{ route('cart.add', ['id'=>$product->id]) }}" class="btn btn-default cart">
                             <i class="fa fa-shopping-cart"></i>
                             Adicionar no carrinho
                         </a>
                     </span>
-
                 </div>
-
             </div>
 
             <div>
                 Tags do Produto :: <span><a href="{{ route('store.tag', ['products' => $product]) }}">{{ $tag->name }}</a> </span>
             </div>
-
-
         </div>
 
     </div>
