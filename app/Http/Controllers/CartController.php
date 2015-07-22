@@ -6,6 +6,7 @@ use CodeCommerce\Cart;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use Illuminate\Support\Facades\Session;
+use CodeCommerce\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {
@@ -45,6 +46,23 @@ class CartController extends Controller
         return redirect()->route('cart');
 
     }
+
+
+    public function update(CartRequest $request, $id, Session $session)
+    {
+        $data = $request->all();
+        $cart = $this->getCart($session);
+        $product = Product::find($id);
+        //$product = $this->productsRepository->find($id);
+        $cart->update($id, $product->name, $product->price, $data['qtd']);
+        if ($data['qtd'] == 0) {
+            $cart->remove($id);
+        }
+        $session::set('cart', $cart);
+        return redirect()->route('cart');
+    }
+
+
 
     public function destroy($id)
     {

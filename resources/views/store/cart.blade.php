@@ -36,8 +36,17 @@
                                 R$ {{ $item['price'] }}
                             </td>
 
+                            {{--<td class="cart_quantity">--}}
+                                {{--{{ $item['qtd'] }}--}}
+                            {{--</td>--}}
+
                             <td class="cart_quantity">
-                                {{ $item['qtd'] }}
+                                {!! Form::open(['route' => ['cart.update', 'id' => $k], 'method' => 'post', 'class' => 'form-inline']) !!}
+                                <div class="form-group">
+                                    {!! Form::text('qtd', $item['qtd'], ['class' => 'form-control']) !!}
+                                </div>
+                                {!! Form::submit('Alterar Qtd', ['class' => 'btn btn-success']) !!}
+                                {!! Form::close() !!}
                             </td>
 
                             <td class="cart_total">
