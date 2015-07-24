@@ -12,20 +12,8 @@ class ProductsTableSeeder  extends Seeder
     {
         DB::table('products')->truncate();
 
-        $faker = Faker::create('pt_BR');
+        factory('CodeCommerce\Product', 30)->create();
 
-        foreach (range(1, 40) as $i) {
-
-            Product::create([
-                'name'          => $faker->Word(),
-                'description'   => $faker->text(),
-                'price'         => $faker->randomNumber(3),
-                'category_id'   => $faker->numberBetween(1,15),
-                'featured'      => $faker->boolean(),
-                'recommend'     => $faker->boolean()
-            ]);
-
-        }
 
     }
 }

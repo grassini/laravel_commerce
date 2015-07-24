@@ -1,8 +1,11 @@
-<?php namespace CodeCommerce\Http\Controllers\Auth;
+<?php
+
+namespace CodeCommerce\Http\Controllers\Auth;
 
 use CodeCommerce\Http\Controllers\Controller;
+use CodeCommerce\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller {
 

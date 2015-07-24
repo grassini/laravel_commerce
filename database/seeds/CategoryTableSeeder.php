@@ -9,20 +9,8 @@ class CategoryTableSeeder  extends Seeder
 {
     public function run()
     {
-        //DB::statement("SET foreign_key_checks = 0");
         DB::table('categories')->truncate();
 
-
-        $faker = Faker::create('pt_BR');
-
-        foreach (range(1, 15) as $i) {
-
-            Category::create([
-                'name' => $faker->firstName,
-                'description' => $faker->sentence()
-            ]);
-
-        }
-
+        factory('CodeCommerce\Category', 15)->create();
     }
 }

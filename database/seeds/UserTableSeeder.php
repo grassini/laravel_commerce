@@ -9,25 +9,20 @@ class UserTableSeeder  extends Seeder
 {
     public function run()
     {
+
         DB::table('users')->truncate();
 
-        $faker = Faker::create();
 
-        User::create([
-            'name'      => 'Jefferson',
-            'email'     => 'grassini@ig.com.br',
-            'password'  => Hash::make(123456)
-        ]);
+        factory('CodeCommerce\User')->create(
+            [
+                'name'      => 'Jefferson',
+                'email'     => 'grassini@ig.com.br',
+                'password'  => Hash::make(123456)
+            ]
+        );
 
-        foreach (range(1, 10) as $i) {
 
-            User::create([
-                'name'      => $faker->name(),
-                'email'     => $faker->email(),
-                'password'  => Hash::make($faker->word)
-            ]);
-
-        }
+        factory('CodeCommerce\User', 10)->create();
 
     }
 }
