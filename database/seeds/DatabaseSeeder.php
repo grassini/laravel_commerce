@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ProductsTableSeeder');
 		$this->call('TagsTableSeeder');
 
-        //DB::statement("SET foreign_key_checks = 1");
 	}
 
 }
